@@ -12,17 +12,17 @@ function displayImg(response) {
 // function displayImg2(response)
 // let html = ('');
 // html += `<img src=${response.hdurl} style='width:50%;'>`
-function generateDate() {
-  let date = new Date().toJSON().slice(0,10);
-  console.log(date);
-  return date;
-}
+// function generateDate() {
+//   let date = new Date().toJSON().slice(0,10);
+//   console.log(date);
+//   return date;
+// }
 
 
 
 function displayData(response) {
   let html = ('');
-  let date = ((response[getLastSolKey(response)].First_UTC)).substring(0,10);
+  let date = (response[getLastSolKey(response)].First_UTC).substring(0,10);
   html += `<p>The date is ${date}</p>`;
   html += `<p>The wind speed is ${response[getLastSolKey(response)].HWS.av} km/h</p>`
   html += `<p>The temp is ${response[getLastSolKey(response)].AT.av} degrees celcius</p>`
@@ -69,13 +69,13 @@ $(document).ready(function() {
 
 $('#mars-pic').click(function() {
   let request3 = new XMLHttpRequest
-  const url3 = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${generateDate()}&api_key=${process.env.API_KEY}`
+  const url3 = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2020-09-08&api_key=${process.env.API_KEY}`
   request3.onreadystatechange = function () {
     if (this.readyState === 4 && this.status === 200) {
       const picResponse2 = JSON.parse(this.responseText);
       // displayImg2(picResponse2);
       console.log(picResponse2);
-      generateDate();
+      // generateDate();
     }
   };
   request3.open("GET", url3, true);
