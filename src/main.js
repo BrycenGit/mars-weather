@@ -3,17 +3,18 @@ import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/styles.css";
 
-// function displayImg() {
-//   let html = ();
-//   html += `<img src=${}>`
+// function displayImg(response) {
+//   let html = ('');
+//   html += `<img src=${response.hdurl}>`;
+//   $('.pic').append(html);
+//   alert('pic');
 // }
 
 function getSolKey(response) { //optain solkey at arra
-let solKey;
-let last = response.sol_keys.length - 1;
-solKey = response.sol_keys[last]
-console.log(solKey);
-return solKey;
+  let solKey;
+  let last = (response.sol_keys.length - 1);
+  solKey = response.sol_keys[last]
+  return solKey;
 
 }
 
@@ -30,20 +31,23 @@ function getWindSpeed(response) { //horizontal wind speed meters per second
 }
 
 $(document).ready(function() {
-  let request = new XMLHttpRequest();
-  const url = `https://api.nasa.gov/insight_weather/?api_key=${process.env.API_KEY}&feedtype=json&ver=1.0`
-  request.onreadystatechange = function () {
-    if (this.readyState === 4 && this.status === 200) {
-      const response = JSON.parse(this.responseText);
-      console.log(response);
-      displayDate(response);
-      getTemp(response);
-      getWindSpeed(response);
-    }
-  };
-  request.open("GET", url, true);
-  request.send();
+  $('#get-date').click(function() {
+    let request = new XMLHttpRequest();
+    const url = `https://api.nasa.gov/insight_weather/?api_key=${process.env.API_KEY}&feedtype=json&ver=1.0`
+    request.onreadystatechange = function () {
+      if (this.readyState === 4 && this.status === 200) {
+        const response = JSON.parse(this.responseText);
+        console.log(response);
+        displayDate(response);
+        getTemp(response);
+        getWindSpeed(response);
+      }
+    
+    request.open("GET", url, true);
+    request.send();
+    };
   
+  })  
   
   $('#pic-of-day').click(function() {
     alert('hello');
@@ -52,13 +56,14 @@ $(document).ready(function() {
   
     request2.onreadystatechange = function () {
       if (this.readyState === 4 && this.status === 200) {
-        const response = JSON.parse(this.responseText);
-        console.log(response);
+        const picResponse = JSON.parse(this.responseText);
+        console.log(picResponse.hdurl);
+      
       }
-    };
+    
     request.open("GET", url2, true);
     request.send();
-    
+    };
 
 
   })
