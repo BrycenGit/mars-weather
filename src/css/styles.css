@@ -10,3 +10,11 @@ img {
   font: arial;
   border: black;
 }
+
+#data {
+  display: none;
+}
+
+#pic {
+  display: none;
+}

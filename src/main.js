@@ -9,9 +9,21 @@ function displayImg(response) {
   $('#pic').html(html);
 }
 
+// function displayImg2(response)
+// let html = ('');
+// html += `<img src=${response.hdurl} style='width:50%;'>`
+function generateDate() {
+  let date = new Date().toJSON().slice(0,10);
+  console.log(date);
+  return date;
+}
+
+
+
 function displayData(response) {
   let html = ('');
-  html += `<p>The date is ${response[getLastSolKey(response)].First_UTC}</p>`;
+  let date = ((response[getLastSolKey(response)].First_UTC)).substring(0,10);
+  html += `<p>The date is ${date}</p>`;
   html += `<p>The wind speed is ${response[getLastSolKey(response)].HWS.av} km/h</p>`
   html += `<p>The temp is ${response[getLastSolKey(response)].AT.av} degrees celcius</p>`
   $('#data').html(html);
@@ -25,6 +37,7 @@ function getLastSolKey(response) { //optain solkey of last array
 }
 
 $(document).ready(function() {
+  
   $('#get-date').click(function() {
     let request = new XMLHttpRequest();
     const url = `https://api.nasa.gov/insight_weather/?api_key=${process.env.API_KEY}&feedtype=json&ver=1.0`
@@ -36,6 +49,7 @@ $(document).ready(function() {
     };  
     request.open("GET", url, true);
     request.send();
+    $('#data').toggle();
   })  
   
   $('#pic-of-day').click(function() {
@@ -49,5 +63,21 @@ $(document).ready(function() {
     };
     request2.open("GET", url2, true);
     request2.send();
+    $('#pic').toggle();
   })
+})
+
+$('#mars-pic').click(function() {
+  let request3 = new XMLHttpRequest
+  const url3 = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${generateDate()}&api_key=${process.env.API_KEY}`
+  request3.onreadystatechange = function () {
+    if (this.readyState === 4 && this.status === 200) {
+      const picResponse2 = JSON.parse(this.responseText);
+      // displayImg2(picResponse2);
+      console.log(picResponse2);
+      generateDate();
+    }
+  };
+  request3.open("GET", url3, true);
+  request3.send();
 })
