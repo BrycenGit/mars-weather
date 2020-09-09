@@ -3,9 +3,15 @@ import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/styles.css";
 
+// function displayImg() {
+//   let html = ();
+//   html += `<img src=${}>`
+// }
+
 function getSolKey(response) { //optain solkey at arra
 let solKey;
-solKey = response.sol_keys[0]
+let last = response.sol_keys.length - 1;
+solKey = response.sol_keys[last]
 console.log(solKey);
 return solKey;
 
@@ -38,4 +44,24 @@ $(document).ready(function() {
   request.open("GET", url, true);
   request.send();
   
+  
+  $('#pic-of-day').click(function() {
+    alert('hello');
+    let request2 = new XMLHttpRequest
+    const url2 = `https://api.nasa.gov/planetary/apod?api_key=${process.env.API_KEY}`
+  
+    request2.onreadystatechange = function () {
+      if (this.readyState === 4 && this.status === 200) {
+        const response = JSON.parse(this.responseText);
+        console.log(response);
+      }
+    };
+    request.open("GET", url2, true);
+    request.send();
+    
+
+
+  })
+
+
 })

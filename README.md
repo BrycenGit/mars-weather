@@ -15,6 +15,7 @@ _{This is a detailed description of your application. Its purpose and usage.  Gi
 * _Go to <https://api.nasa.gov/>
 * _Fill out the required fields to generate an API key (First Name, Last Name, Email).
 * _After it is generated, test your information fetching code in your Google Chrome URL, or a program like Postman.
+* _Create a local .env file in the root directory of "Mars-Weather" to store your API key, and link the code to the main.js file. 
 
 
 
