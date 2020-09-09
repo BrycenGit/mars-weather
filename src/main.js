@@ -3,12 +3,12 @@ import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/styles.css";
 
-// function displayImg(response) {
-//   let html = ('');
-//   html += `<img src=${response.hdurl}>`;
-//   $('.pic').append(html);
-//   alert('pic');
-// }
+function displayImg(response) {
+  let html = ('');
+  html += `<img src=${response.hdurl} style='width:50%;'>`;
+  $('.pic').html(html);
+  alert('pic');
+}
 
 function getSolKey(response) { //optain solkey at arra
   let solKey;
@@ -43,9 +43,10 @@ $(document).ready(function() {
         getWindSpeed(response);
       }
     
+
+    };  
     request.open("GET", url, true);
     request.send();
-    };
   
   })  
   
@@ -58,13 +59,13 @@ $(document).ready(function() {
       if (this.readyState === 4 && this.status === 200) {
         const picResponse = JSON.parse(this.responseText);
         console.log(picResponse.hdurl);
-      
+        displayImg(picResponse);
       }
     
-    request.open("GET", url2, true);
-    request.send();
-    };
 
+    };
+    request2.open("GET", url2, true);
+    request2.send();
 
   })
 

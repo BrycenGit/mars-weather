@@ -1,3 +1,7 @@
  body {
   background-color: orangered;
 };
+
+img {
+  width: 100px;
+};

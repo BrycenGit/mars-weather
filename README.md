@@ -1,6 +1,6 @@
-# _Mars_
+# _Mars Tracker_
 
-#### _{Brief description of application}, September 9th 2020_
+#### _We've got all the information you could want or need on the Red Planet!, September 9th 2020_
 
 #### By _**Garrett Brown, Brycen Bartolome**_
 
@@ -36,7 +36,7 @@ _{If there are issues, please contact the individuals bellow for help:_
 
 ## Technologies Used
 
-_ _
+_HTML, CSS, jQuery, MD, JavaScript, Bootstrap. Programmed in VS Code. API tested in Postman. Utilizes information from https://api.nasa.gov/_
 
 ### License
 
