@@ -10,11 +10,11 @@ _{This is a detailed description of your application. Its purpose and usage.  Gi
 
 ## Setup/Installation Requirements
 
-* _This is a great place_
-* _to list setup instructions_
-* _in a simple_
-* _easy-to-understand_
-* _format_
+#To get an API key
+
+* _Go to <https://api.nasa.gov/>
+* _Fill out the required fields to generate an API key (First Name, Last Name, Email).
+* _After it is generated, test your information fetching code in your Google Chrome URL, or a program like Postman.
 
 
 

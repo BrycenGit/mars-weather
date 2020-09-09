@@ -3,16 +3,24 @@ import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/styles.css";
 
-function displaySolKeys(response) {
+function getSolKey(response) { //optain solkey at arra
 let solKey;
 solKey = response.sol_keys[0]
+console.log(solKey);
 return solKey;
+
 }
 
-function displayDate(response) {
-  let earthDate;
-  earthDate = response.[634].First_UTC;
-  console.log(earthDate);
+function displayDate(response) { // date of first UTC
+  console.log(response[getSolKey(response)].First_UTC);
+}
+
+function getTemp(response) { //atmospheric temp in celcius
+  console.log(response[getSolKey(response)].AT.av)
+}
+
+function getWindSpeed(response) { //horizontal wind speed meters per second
+  console.log(response[getSolKey(response)].HWS.av)
 }
 
 $(document).ready(function() {
@@ -22,8 +30,9 @@ $(document).ready(function() {
     if (this.readyState === 4 && this.status === 200) {
       const response = JSON.parse(this.responseText);
       console.log(response);
-      displaySolKeys(response);
       displayDate(response);
+      getTemp(response);
+      getWindSpeed(response);
     }
   };
   request.open("GET", url, true);
