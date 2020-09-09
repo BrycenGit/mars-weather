@@ -9,16 +9,12 @@ function displayImg(response) {
   $('#pic').html(html);
 }
 
-// function displayImg2(response)
-// let html = ('');
-// html += `<img src=${response.hdurl} style='width:50%;'>`
-// function generateDate() {
-//   let date = new Date().toJSON().slice(0,10);
-//   console.log(date);
-//   return date;
-// }
+function displayImg2(response) {
+let html = ('');
+html += `<img src=${response.photos[0].img_src} style='width:50%;'>`
+$('#mars-pic-show').html(html);
 
-
+}
 
 function displayData(response) {
   let html = ('');
@@ -73,11 +69,12 @@ $('#mars-pic').click(function() {
   request3.onreadystatechange = function () {
     if (this.readyState === 4 && this.status === 200) {
       const picResponse2 = JSON.parse(this.responseText);
-      // displayImg2(picResponse2);
+      displayImg2(picResponse2);
       console.log(picResponse2);
       // generateDate();
     }
   };
   request3.open("GET", url3, true);
   request3.send();
+  $('#mars-pic-show').toggle();
 })
