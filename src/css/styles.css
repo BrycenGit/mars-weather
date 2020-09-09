@@ -1,7 +1,12 @@
  body {
-  background-color: orangered;
+  background-color: #f14c00e7;
 };
 
 img {
-  width: 100px;
+  width: 50%;
 };
+
+.jumbotron {
+  font: arial;
+  border: black;
+}

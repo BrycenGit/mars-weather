@@ -6,28 +6,22 @@ import "./css/styles.css";
 function displayImg(response) {
   let html = ('');
   html += `<img src=${response.hdurl} style='width:50%;'>`;
-  $('.pic').html(html);
-  alert('pic');
+  $('#pic').html(html);
 }
 
-function getSolKey(response) { //optain solkey at arra
+function displayData(response) {
+  let html = ('');
+  html += `<p>The date is ${response[getLastSolKey(response)].First_UTC}</p>`;
+  html += `<p>The wind speed is ${response[getLastSolKey(response)].HWS.av} km/h</p>`
+  html += `<p>The temp is ${response[getLastSolKey(response)].AT.av} degrees celcius</p>`
+  $('#data').html(html);
+}
+
+function getLastSolKey(response) { //optain solkey of last array
   let solKey;
   let last = (response.sol_keys.length - 1);
   solKey = response.sol_keys[last]
   return solKey;
-
-}
-
-function displayDate(response) { // date of first UTC
-  console.log(response[getSolKey(response)].First_UTC);
-}
-
-function getTemp(response) { //atmospheric temp in celcius
-  console.log(response[getSolKey(response)].AT.av)
-}
-
-function getWindSpeed(response) { //horizontal wind speed meters per second
-  console.log(response[getSolKey(response)].HWS.av)
 }
 
 $(document).ready(function() {
@@ -37,37 +31,23 @@ $(document).ready(function() {
     request.onreadystatechange = function () {
       if (this.readyState === 4 && this.status === 200) {
         const response = JSON.parse(this.responseText);
-        console.log(response);
-        displayDate(response);
-        getTemp(response);
-        getWindSpeed(response);
+        displayData(response);
       }
-    
-
     };  
     request.open("GET", url, true);
     request.send();
-  
   })  
   
   $('#pic-of-day').click(function() {
-    alert('hello');
     let request2 = new XMLHttpRequest
     const url2 = `https://api.nasa.gov/planetary/apod?api_key=${process.env.API_KEY}`
-  
     request2.onreadystatechange = function () {
       if (this.readyState === 4 && this.status === 200) {
         const picResponse = JSON.parse(this.responseText);
-        console.log(picResponse.hdurl);
         displayImg(picResponse);
       }
-    
-
     };
     request2.open("GET", url2, true);
     request2.send();
-
   })
-
-
 })
