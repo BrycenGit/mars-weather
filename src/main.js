@@ -5,13 +5,13 @@ import "./css/styles.css";
 
 function displayImg(response) {
   let html = ('');
-  html += `<img src=${response.hdurl} style='width:50%;'>`;
+  html += `<img src=${response.hdurl} style='width:100%;'>`;
   $('#pic').html(html);
 }
 
 function displayImg2(response) {
 let html = ('');
-html += `<img src=${response.photos[0].img_src} style='width:50%;'>`
+html += `<img src=${response.photos[0].img_src} style='width:100%;'>`
 $('#mars-pic-show').html(html);
 
 }
