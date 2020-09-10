@@ -1,15 +1,19 @@
- body {
-  background-color: #f14c00e7;
-};
+.jumbotron {
+  font: arial;
+  border: black;
+  border-style: solid;
+  border-width: 10px;
+  background-color: rgba(177, 79, 22, 0.76);
+}
+
+body {
+  background-image: linear-gradient(rgba(196, 152, 30, 0.774), red);
+}
 
 img {
   width: 50%;
 };
 
-.jumbotron {
-  font: arial;
-  border: black;
-}
 
 #data {
   display: none;
